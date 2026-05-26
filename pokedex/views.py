@@ -4,7 +4,8 @@ from django.shortcuts import render, redirect
 
 from .models import Pokemon, Trainer
 from .forms import PokemonForm
-
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     pokemons = Pokemon.objects.all()
@@ -41,7 +42,7 @@ def trainer_detail(request, trainer_id):
 
     return HttpResponse(template.render(context, request))
 
-
+@login_required
 def add_pokemon(request):
 
     if request.method == 'POST':
@@ -58,7 +59,9 @@ def add_pokemon(request):
         'form': form,
         'title': 'Agregar Pokemon'
     })
-
+    
+    
+@login_required
 def delete_pokemon(request, pokemon_id):
 
     pokemon = Pokemon.objects.get(id=pokemon_id)
@@ -67,6 +70,7 @@ def delete_pokemon(request, pokemon_id):
 
     return redirect('index') 
 
+@login_required
 def edit_pokemon(request, pokemon_id):
 
     pokemon = Pokemon.objects.get(id=pokemon_id)
@@ -89,3 +93,5 @@ def edit_pokemon(request, pokemon_id):
         'form': form,
         'title': 'Editar Pokemon'
     })
+class CustomLoginView(LoginView):
+    template_name = 'login_form.html'

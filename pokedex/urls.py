@@ -1,6 +1,7 @@
 import django.urls
 from . import views
 
+app_name = 'pokedex'
 urlpatterns = [
     django.urls.path('', views.index, name='index'),
 
@@ -32,5 +33,9 @@ urlpatterns = [
         'pokemon/delete/<int:pokemon_id>/',
         views.delete_pokemon,
         name='delete_pokemon'
+    ),
+    
+    django.urls.path(
+        'login/', views.CustomLoginView.as_view(), name='login'
     ),
 ]
