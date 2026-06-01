@@ -20,38 +20,66 @@
         Detalles del entrenador
     </h3>
 
-    <ul class="list-group list-group-flush">
+    <div class="row g-4">
+        <div class="col-md-4">
+            {% if trainer.photo %}
+                <img src="{{ trainer.photo.url }}" alt="{{ trainer }}" class="img-fluid rounded" style="max-height: 320px; object-fit: cover;">
+            {% else %}
+                <div class="bg-light border rounded p-5 text-center text-muted">
+                    Sin imagen de perfil
+                </div>
+            {% endif %}
+        </div>
 
-        <li class="list-group-item">
-            <strong>
-                <i class="fa-solid fa-ranking-star text-warning"></i>
-                Nivel:
-            </strong>
+        <div class="col-md-8">
+            <ul class="list-group list-group-flush">
 
-            {{ trainer.level }}
-        </li>
+                <li class="list-group-item">
+                    <strong>
+                        <i class="fa-solid fa-ranking-star text-warning"></i>
+                        Nivel:
+                    </strong>
 
-        <li class="list-group-item">
-            <strong>
-                <i class="fa-solid fa-calendar-days text-primary"></i>
-                Fecha de nacimiento:
-            </strong>
+                    {{ trainer.level }}
+                </li>
 
-            {{ trainer.birth_date }}
-        </li>
+                <li class="list-group-item">
+                    <strong>
+                        <i class="fa-solid fa-calendar-days text-primary"></i>
+                        Fecha de nacimiento:
+                    </strong>
 
-    </ul>
+                    {{ trainer.birth_date }}
+                </li>
 
-    <div class="mt-4">
+            </ul>
 
-        <a href="{% url 'index' %}"
-           class="btn btn-info btn-lg shadow">
+            <div class="mt-4">
 
-            <i class="fa-solid fa-arrow-left"></i>
-            Regresar
+                <a href="{% url 'pokedex:index' %}"
+                   class="btn btn-info btn-lg shadow">
 
-        </a>
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Regresar
 
+                </a>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'pokedex:edit_trainer' trainer.id %}"
+                       class="btn btn-warning btn-lg shadow ms-2">
+                        <i class="fa-solid fa-pencil"></i>
+                        Editar
+                    </a>
+                    <a href="{% url 'pokedex:delete_trainer' trainer.id %}"
+                       class="btn btn-danger btn-lg shadow ms-2"
+                       onclick="return confirm('¿Seguro que deseas eliminar este entrenador?')">
+                        <i class="fa-solid fa-trash"></i>
+                        Eliminar
+                    </a>
+                {% endif %}
+
+            </div>
+        </div>
     </div>
 
 </div>

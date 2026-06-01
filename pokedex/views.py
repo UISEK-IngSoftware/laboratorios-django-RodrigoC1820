@@ -3,7 +3,7 @@ from django.template import loader
 from django.shortcuts import render, redirect
 
 from .models import Pokemon, Trainer
-from .forms import PokemonForm
+from .forms import PokemonForm, TrainerForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 
@@ -50,7 +50,7 @@ def add_pokemon(request):
 
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('pokedex:index')
 
     else:
         form = PokemonForm()
@@ -58,6 +58,25 @@ def add_pokemon(request):
     return render(request, 'pokemon_form.html', {
         'form': form,
         'title': 'Agregar Pokemon'
+    })
+
+
+@login_required
+def add_trainer(request):
+
+    if request.method == 'POST':
+        form = TrainerForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect('pokedex:index')
+
+    else:
+        form = TrainerForm()
+
+    return render(request, 'trainer_form.html', {
+        'form': form,
+        'title': 'Agregar Entrenador'
     })
     
     
@@ -68,7 +87,7 @@ def delete_pokemon(request, pokemon_id):
 
     pokemon.delete()
 
-    return redirect('index') 
+    return redirect('pokedex:index')
 
 @login_required
 def edit_pokemon(request, pokemon_id):
@@ -84,7 +103,7 @@ def edit_pokemon(request, pokemon_id):
 
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('pokedex:index')
 
     else:
         form = PokemonForm(instance=pokemon)
@@ -93,5 +112,38 @@ def edit_pokemon(request, pokemon_id):
         'form': form,
         'title': 'Editar Pokemon'
     })
+
+
+@login_required
+def edit_trainer(request, trainer_id):
+
+    trainer = Trainer.objects.get(id=trainer_id)
+
+    if request.method == 'POST':
+        form = TrainerForm(
+            request.POST,
+            request.FILES,
+            instance=trainer
+        )
+
+        if form.is_valid():
+            form.save()
+            return redirect('pokedex:index')
+
+    else:
+        form = TrainerForm(instance=trainer)
+
+    return render(request, 'trainer_form.html', {
+        'form': form,
+        'title': 'Editar Entrenador'
+    })
+
+
+@login_required
+def delete_trainer(request, trainer_id):
+
+    trainer = Trainer.objects.get(id=trainer_id)
+    trainer.delete()
+    return redirect('pokedex:index')
 class CustomLoginView(LoginView):
     template_name = 'login_form.html'
