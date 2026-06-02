@@ -19,11 +19,11 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a href="{% url "logout" %}" class="nav-link">Cerrar Sesión</a>
+                        <a href="{% url 'logout' %}" class="nav-link">Cerrar Sesión</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a href="{% url "pokedex:login" %}" class="nav-link">Iniciar Sesión</a>
+                        <a href="{% url 'pokedex:login' %}" class="nav-link">Iniciar Sesión</a>
                     </li>
                     {% endif %}
                 </ul>

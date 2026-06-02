@@ -27,11 +27,17 @@
 <div class="row align-items-center mt-4">
 
     <div class="col-md-6">
-        <img
-            src="{{ pokemon.picture.url }}"
-            alt="{{ pokemon.name }}"
-            style="width: 100%; max-width: 430px; object-fit: contain;"
-        >
+        {% if pokemon.picture.name %}
+            <img
+                src="{{ pokemon.picture.url }}"
+                alt="{{ pokemon.name }}"
+                style="width: 100%; max-width: 430px; object-fit: contain;"
+            >
+        {% else %}
+            <div class="bg-light text-secondary d-flex align-items-center justify-content-center" style="width: 100%; max-width: 430px; height: 250px;">
+                Sin imagen disponible
+            </div>
+        {% endif %}
     </div>
 
     <a href="{% url 'pokedex:index' %}" class="btn btn-info btn-lg shadow">

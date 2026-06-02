@@ -6,6 +6,12 @@ from .models import Pokemon, Trainer
 from .forms import PokemonForm, TrainerForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('pokedex:index')
 
 def index(request):
     pokemons = Pokemon.objects.all()

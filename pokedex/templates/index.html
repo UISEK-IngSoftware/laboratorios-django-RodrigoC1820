@@ -18,10 +18,16 @@
         <a href="{% url 'pokedex:pokemon' pokemon.id %}">{{ pokemon|capfirst }}</a>
 
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" 
-                 src="{{ pokemon.picture.url }}" 
-                 alt="{{ pokemon.name }}"
-                 style="height: 250px; object-fit: contain;">
+            {% if pokemon.picture.name %}
+                <img class="card-img-top" 
+                     src="{{ pokemon.picture.url }}" 
+                     alt="{{ pokemon.name }}"
+                     style="height: 250px; object-fit: contain;">
+            {% else %}
+                <div class="card-img-top d-flex align-items-center justify-content-center bg-light text-secondary" style="height: 250px;">
+                    Sin imagen disponible
+                </div>
+            {% endif %}
 
             <div class="card-body">
                 <h5 class="card-title">{{ pokemon|capfirst }}</h5>
