@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from pokedex.views import logout_view
+from oauth2_provider import urls as oauth2_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +27,7 @@ urlpatterns = [
     path('', include('pokedex.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('api/', include('api.urls')),
+    path('o/', include(oauth2_urls)), 
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
