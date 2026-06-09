@@ -1,0 +1,181 @@
+{
+  "info": {
+    "name": "Laboratorios Django API",
+    "description": "Colección Postman para los endpoints REST de Trainer y Pokemon.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Trainers",
+      "item": [
+        {
+          "name": "List Trainers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/trainers/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "trainers", ""]
+            }
+          }
+        },
+        {
+          "name": "Get Trainer",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/trainers/:id/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "trainers", ":id", ""]
+            }
+          }
+        },
+        {
+          "name": "Create Trainer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"Ash\",\n  \"last_name\": \"Ketchum\",\n  \"birth_date\": \"1990-05-22\",\n  \"level\": 10,\n  \"photo\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trainers/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "trainers", ""]
+            }
+          }
+        },
+        {
+          "name": "Update Trainer",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"Ash\",\n  \"last_name\": \"Ketchum\",\n  \"birth_date\": \"1990-05-22\",\n  \"level\": 15,\n  \"photo\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trainers/:id/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "trainers", ":id", ""]
+            }
+          }
+        },
+        {
+          "name": "Delete Trainer",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/trainers/:id/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "trainers", ":id", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pokemons",
+      "item": [
+        {
+          "name": "List Pokemons",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/pokemons/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pokemons", ""]
+            }
+          }
+        },
+        {
+          "name": "Get Pokemon",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/pokemons/:id/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pokemons", ":id", ""]
+            }
+          }
+        },
+        {
+          "name": "Create Pokemon",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Pikachu\",\n  \"type\": \"E\",\n  \"weight\": 6.0,\n  \"height\": 0.4,\n  \"trainer\": null,\n  \"picture\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/pokemons/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pokemons", ""]
+            }
+          }
+        },
+        {
+          "name": "Update Pokemon",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Pikachu\",\n  \"type\": \"E\",\n  \"weight\": 6.5,\n  \"height\": 0.4,\n  \"trainer\": null,\n  \"picture\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/pokemons/:id/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pokemons", ":id", ""]
+            }
+          }
+        },
+        {
+          "name": "Delete Pokemon",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/pokemons/:id/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "pokemons", ":id", ""]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000"
+    }
+  ]
+}
